@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import sys
+import Math
 
 argc = len(sys.argv)
 
@@ -11,6 +12,3 @@ elif argc > 2:
 
 equation = sys.argv[1]
 print(equation)
-
-test =  babylonian_method(125348)
-print(test)
