@@ -1,30 +1,28 @@
 #!/usr/bin/python3
 
 import unittest
-import Math
-import Parser
-import Solver
+import my_math
 from Equation import Equation
 
-class TestMath(unittest.TestCase):
+class TestMyMath(unittest.TestCase):
 
     def test_pow(self):
-        self.assertEqual(Math.pow(10, 5), 10 ** 5)
-        self.assertEqual(Math.pow(10, 4), 10 ** 4)
-        self.assertEqual(Math.pow(10, 0), 10 ** 0)
-        self.assertEqual(Math.pow(-10, 3), -10 ** 3)
+        self.assertEqual(my_math.pow(10, 5), 10 ** 5)
+        self.assertEqual(my_math.pow(10, 4), 10 ** 4)
+        self.assertEqual(my_math.pow(10, 0), 10 ** 0)
+        self.assertEqual(my_math.pow(-10, 3), -10 ** 3)
 
     def test_abs(self):
-        self.assertEqual(Math.abs(0), abs(0))
-        self.assertEqual(Math.abs(-1), abs(-1))
-        self.assertEqual(Math.abs(2), abs(2))
+        self.assertEqual(my_math.abs(0), abs(0))
+        self.assertEqual(my_math.abs(-1), abs(-1))
+        self.assertEqual(my_math.abs(2), abs(2))
 
     def test_sqrt(self):
-        self.assertEqual(Math.sqrt(0), 0)
-        self.assertEqual(Math.sqrt(4), 2)
-        self.assertEqual(Math.sqrt(7), 2.6457513110645907)
-        self.assertEqual(Math.sqrt(125348), 354.04519485512014)
-        self.assertEqual(Math.sqrt(133333333387), 365148.37174359686)
+        self.assertEqual(my_math.sqrt(0), 0)
+        self.assertEqual(my_math.sqrt(4), 2)
+        self.assertEqual(my_math.sqrt(7), 2.6457513110645907)
+        self.assertEqual(my_math.sqrt(125348), 354.04519485512014)
+        self.assertEqual(my_math.sqrt(133333333387), 365148.37174359686)
 
 class TestEquation(unittest.TestCase):
 
