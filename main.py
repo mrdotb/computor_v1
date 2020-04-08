@@ -17,5 +17,5 @@ print("Reduced form: ", e.format())
 print("Polynomial degree: ",  e.degree())
 if e.degree() > 2:
     print("The polynomial degree is stricly greater than 2, I can't solve.")
-print("The solution is:")
-print(e.solve())
+else:
+    print(e.solve())

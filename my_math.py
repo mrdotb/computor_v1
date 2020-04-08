@@ -22,4 +22,4 @@ def sqrt(nb):
     if nb == 0:
         return 0
     else:
-        return babylonian_method(nb)
+        return babylonian_method(abs(nb))

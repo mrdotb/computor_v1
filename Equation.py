@@ -1,5 +1,7 @@
 import re
 import copy
+import my_math
+import math
 
 class Equation:
     """ Solve polynomial until degree 2 """
@@ -82,10 +84,63 @@ class Equation:
             return 'No solutions.'
 
     def solve_degree1(self):
-        0
+        (left, right) = self.state
+        degree0 = 0.0
+        degree1 = 0.0
+        string = 'The solution is:\n'
+        for index, term in enumerate(left):
+            if term['degree'] == 0:
+                degree0 -= term['coeff']
+            elif term['degree'] == 1:
+                degree1 += term['coeff']
+        if degree1 == 1.0:
+            string += 'X = ' + self.format_coeff(degree0, 0)
+        else:
+            string += 'X = ' +  self.format_coeff(degree0 / degree1, 0)
+        return string
 
     def solve_degree2(self):
-        0
+        (left, right) = self.state
+        degree0 = 0
+        degree1 = 0
+        degree2 = 0
+        string = ''
+
+        for index, term in enumerate(left):
+            if term['degree'] == 0:
+                degree0 = term['coeff']
+            elif term['degree'] == 1:
+                degree1 = term['coeff']
+            elif term['degree'] == 2:
+                degree2 = term['coeff']
+
+        # Quadrantic formula
+        # https://en.wikipedia.org/wiki/Quadratic_formula
+        # https://en.wikipedia.org/wiki/Discriminant
+        discriminant = my_math.pow(degree1, 2) - 4 * degree2 * degree0
+        sqrt_discri = my_math.sqrt(discriminant)
+        if discriminant == 0.0:
+            solution = self.format_float(-degree1 / (2 * degree2))
+            string += 'Discriminant is 0:\n{}'.format(solution)
+        elif discriminant > 0.0:
+            solution_a = (-degree1 + sqrt_discri) / (2 * degree2)
+            solution_b = (-degree1 - sqrt_discri) / (2 * degree2)
+            string += 'Discriminant is strictly positive, the two solutions are:\n{}\n{}'.format(solution_a, solution_b)
+        elif discriminant < 0.0:
+            a = self.format_float(-degree1 / (2 * degree2))
+            b = self.format_float(sqrt_discri / (2 * degree2))
+            string += 'Discriminant is strictly negative, the two complex solutions are:\n'
+            string += '{} + i * {}\n'.format(a, b)
+            string += '{} - i * {}'.format(a, b)
+
+        return string
+ 
+
+    def format_float(self, nb):
+        if nb.is_integer():
+            return str(int(nb))
+        else:
+            return str(nb)
 
     def format_coeff(self, nb, index):
         if index > 0 and nb < 0:
