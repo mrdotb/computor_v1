@@ -117,7 +117,7 @@ class TestEquation(unittest.TestCase):
         self.assertEqual(a.format(), simple)
 
     def test_simplify_5(self):
-        a = Equation("42 * X^0 + 42 * X^0 - 42 * X^0= 42 * X^0")
+        a = Equation("42 * X^0 + 42 * X^0 - 42 * X^0 = 42 * X^0")
         simple = "0 = 0"
         a.simplify()
         self.assertEqual(a.format(), simple)
@@ -216,6 +216,13 @@ class TestEquation(unittest.TestCase):
         a = Equation("5 * X^0 + 3 * X^1 + 3 * X^2 = 1 * X^0 + 0 * X^1")
         a.simplify()
         self.assertEqual(a.solve(), "Discriminant is strictly negative, the two complex solutions are:\n-0.5 + i * 1.0408329997330663\n-0.5 - i * 1.0408329997330663")
+
+    def test_solve_20(self):
+        a = Equation("300000000000000000000000000000000000000000000000000000000 * X^0 + 3000000000000000000000000000000000000000000000000000000 * X^1 = 0 * X^0 - 1 * X^1 - 300000000000000000000000000000000000000000000000000000000000.12 * X^2")
+        a.simplify()
+        self.assertEqual(a.solve(), "Discriminant is strictly negative, the two complex solutions are:\n-4.9999999999999996e-06 + i * 0.031622776206399084\n-4.9999999999999996e-06 - i * 0.031622776206399084")
+
+
 
 unittest.main()
 
